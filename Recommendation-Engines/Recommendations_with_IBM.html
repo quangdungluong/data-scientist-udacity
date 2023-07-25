@@ -14986,7 +14986,7 @@ Your top_20 looks like the solution list! Nice job.
 <span class="sd">    </span>
 <span class="sd">    &#39;&#39;&#39;</span>
     <span class="n">similarities</span> <span class="o">=</span> <span class="n">user_item</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="n">user_item</span><span class="p">))</span>
-    <span class="n">similarities</span> <span class="o">=</span> <span class="n">similarities</span><span class="p">[</span><span class="n">user_id</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">()</span>
+    <span class="n">similarities</span> <span class="o">=</span> <span class="n">similarities</span><span class="p">[</span><span class="n">user_id</span><span class="p">]</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
     <span class="n">most_similar_users</span> <span class="o">=</span> <span class="n">similarities</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
     <span class="n">most_similar_users</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">user_id</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">most_similar_users</span> <span class="c1"># return a list of the users in order from most to least similar</span>
@@ -15027,9 +15027,9 @@ Your top_20 looks like the solution list! Nice job.
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>The 10 most similar users to user 1 are: [2575, 2911, 2916, 2918, 2920, 2921, 2922, 2923, 2927, 2928]
-The 5 most similar users to user 3933 are: [2575, 2945, 2947, 2948, 2950]
-The 3 most similar users to user 46 are: [2575, 2805, 2806]
+<pre>The 10 most similar users to user 1 are: [3933, 23, 3782, 203, 4459, 3870, 131, 4201, 46, 5041]
+The 5 most similar users to user 3933 are: [1, 23, 3782, 203, 4459]
+The 3 most similar users to user 46 are: [4201, 3782, 23]
 </pre>
 </div>
 </div>
@@ -15157,16 +15157,16 @@ The 3 most similar users to user 46 are: [2575, 2805, 2806]
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
-<pre>[&#39;airbnb data for analytics: amsterdam reviews&#39;,
- &#39;building custom machine learning algorithms with apache systemml&#39;,
- &#39;customer demographics and sales&#39;,
- &#39;learn basics about notebooks and apache spark&#39;,
- &#39;predicting churn with the spss random tree algorithm&#39;,
- &#39;announcing dsx environments in beta!&#39;,
- &#39;optimizing a marketing campaign: moving from predictions to actions&#39;,
- &#39;using deep learning with keras to predict customer churn&#39;,
- &#39;dt: an r interface to the datatables library&#39;,
- &#39;predict chronic kidney disease using spss modeler flows&#39;]</pre>
+<pre>[&#39;recommender systems: approaches &amp; algorithms&#39;,
+ &#39;1448    i ranked every intro to data science course on...\nName: title, dtype: object&#39;,
+ &#39;data tidying in data science experience&#39;,
+ &#39;a tensorflow regression model to predict house values&#39;,
+ &#39;520    using notebooks with pixiedust for fast, flexi...\nName: title, dtype: object&#39;,
+ &#39;airbnb data for analytics: mallorca reviews&#39;,
+ &#39;airbnb data for analytics: vancouver listings&#39;,
+ &#39;analyze facebook data using ibm watson and watson studio&#39;,
+ &#39;analyze accident reports on amazon emr spark&#39;,
+ &#39;analyze energy consumption in buildings&#39;]</pre>
 </div>
 
 </div>
