@@ -5,9 +5,8 @@ import torchvision.transforms as transforms
 from randaugment import Cutout, RandAugment, ImageNetPolicy
 import os
 
-class ChestXRayDataset(DataLoader):
+class ChestXRayDataset:
     def __init__(self, data_dir, image_size):
-        super().__init__()
         image_transformation = transforms.Compose([
             transforms.RandomRotation(20),
             transforms.RandomResizedCrop(224),
