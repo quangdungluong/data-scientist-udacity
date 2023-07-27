@@ -34,34 +34,34 @@ class ChestXRayClassifier():
                 else:
                     model.eval()
 
-            running_loss = 0.0
-            running_correct = 0
+                running_loss = 0.0
+                running_correct = 0
 
-            for i, (inputs, labels) in tqdm(enumerate(dataloaders[phase])):
-                inputs = inputs.to(device)
-                labels = labels.to(device)
+                for i, (inputs, labels) in tqdm(enumerate(dataloaders[phase])):
+                    inputs = inputs.to(device)
+                    labels = labels.to(device)
 
-                optimizer.zero_grad()
+                    optimizer.zero_grad()
 
-                with torch.set_grad_enabled(phase=='train'):
-                    outputs = model(inputs)
-                    _, preds = torch.max(outputs, 1)
-                    loss = loss_criteria(outputs, labels)
-                    if phase == 'train':
-                        loss.backward()
-                        optimizer.step()
+                    with torch.set_grad_enabled(phase=='train'):
+                        outputs = model(inputs)
+                        _, preds = torch.max(outputs, 1)
+                        loss = loss_criteria(outputs, labels)
+                        if phase == 'train':
+                            loss.backward()
+                            optimizer.step()
 
-                running_loss += loss.item() * inputs.size(0)
-                running_correct += torch.sum(preds == labels.data).item()
-            
-            epoch_loss = running_loss / dataset_sizes[phase]
-            epoch_acc = running_correct / dataset_sizes[phase]
-            print(f"{phase.upper()}: Loss: {epoch_loss:.3f} - Accuracy: {epoch_acc:.3f}")
+                    running_loss += loss.item() * inputs.size(0)
+                    running_correct += torch.sum(preds == labels.data).item()
+                
+                epoch_loss = running_loss / dataset_sizes[phase]
+                epoch_acc = running_correct / dataset_sizes[phase]
+                print(f"{phase.upper()}: Loss: {epoch_loss:.3f} - Accuracy: {epoch_acc:.3f}")
 
-            if phase == 'val' and epoch_acc > best_acc:
-                best_acc = epoch_acc
-                best_model_wts = deepcopy(model.state_dict())
-                torch.save(model.state_dict(), self.model_path)
+                if phase == 'val' and epoch_acc > best_acc:
+                    best_acc = epoch_acc
+                    best_model_wts = deepcopy(model.state_dict())
+                    torch.save(model.state_dict(), self.model_path)
 
         model.load_state_dict(best_model_wts)
         return model
