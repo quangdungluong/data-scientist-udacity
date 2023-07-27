@@ -22,6 +22,14 @@ I lack the expertise in medical field to provide deeper analysis of the data, an
 ## Data Visualization
 Check `EDA.ipynb` notebook.
 
+
+## Solution Overview
+I use ResNet50 as my backbone to solve this classification problem.
+
+## Metrics
+The primary measure for this issue is **accuracy**, specifically because it involves a **multiclass classification problem**.
+
+
 ## Installation
 ```
 git clone https://github.com/quangdungluong/data-scientist-udacity
@@ -46,8 +54,6 @@ python app.py
 ```
 
 ## Accuracy on Testset
-The primary measure for this issue is **accuracy**, specifically because it involves a **multiclass classification problem**.
-
 | ResNet50 |
 |---|
 | 85.87% |
