@@ -1,7 +1,9 @@
-from src.trainer import ChestXRayClassifier
-import orjson
-from pprint import pprint
 import argparse
+from pprint import pprint
+
+import orjson
+
+from src.trainer import ChestXRayClassifier
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()

@@ -1,12 +1,13 @@
 """Flask app"""
 import os
 
-import torch
-from flask import Flask, render_template, request, send_from_directory
-from src.model import ChestXRayModel
 import orjson
-from PIL import Image
+import torch
 import torchvision.transforms as transforms
+from flask import Flask, render_template, request, send_from_directory
+from PIL import Image
+
+from src.model import ChestXRayModel
 
 ALLOWED_EXTENSIONS = ['jpg', 'jpeg', 'png']
 UPLOAD_FOLDER = 'uploads'
