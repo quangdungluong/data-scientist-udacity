@@ -35,6 +35,6 @@ class ChestXRayDataset:
         dataset_sizes = {x: len(self.image_datasets[x]) for x in ['train', 'val']}
         dataloaders = {
             x: DataLoader(self.image_datasets[x], batch_size=batch_size,
-                          shuffle=(x == 'train'), num_workers=4) for x in ['train', 'val']
+                          shuffle=(x == 'train'), num_workers=2) for x in ['train', 'val']
         }
         return dataset_sizes, dataloaders

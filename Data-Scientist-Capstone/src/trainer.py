@@ -16,6 +16,7 @@ class ChestXRayClassifier():
         loss_criteria = LabelSmoothingCrossEntropy()
         optimizer = SGD(model.parameters(), lr=self.lr, momentum=self.momentum, weight_decay=self.weight_decay)
         device = 'cuda' if torch.cuda.is_available() else 'cpu'
+        model = model.to(device)
         return model, loss_criteria, optimizer, device
 
     def train_model(self):
