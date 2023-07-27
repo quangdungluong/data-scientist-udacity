@@ -37,7 +37,7 @@ def plot_confusion_matrix(cm, classes, normalize=False, title='Confusion Matrix'
 
 def test_evaluation(params):
     model = ChestXRayModel(num_classes=params['num_classes'])
-    model.load_state_dict(params['model_path'])
+    model.load_state_dict(torch.load(params['model_path']))
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     model = model.to(device)
     model.eval()
