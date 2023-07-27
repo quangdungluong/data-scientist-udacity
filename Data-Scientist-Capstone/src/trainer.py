@@ -1,10 +1,10 @@
 import torch
 from tqdm import tqdm
-import torch.nn as nn
 from src.model import ChestXRayModel
 from timm.loss import LabelSmoothingCrossEntropy
 from torch.optim import SGD
 from src.dataset import ChestXRayDataset
+from copy import deepcopy
 
 class ChestXRayClassifier():
     def __init__(self, **args):
@@ -20,9 +20,13 @@ class ChestXRayClassifier():
 
     def train_model(self):
         [model, loss_criteria, optimizer, device] = self.setup_training()
+        best_model_wts = deepcopy(model.state_dict())
+        best_acc = 0.
+
         dataset_sizes, dataloaders = ChestXRayDataset(self.data_dir, self.image_size).setup_data(self.batch_size)
         num_epochs = self.max_epochs
         for epoch in range(num_epochs):
+            print("="*5 + f"Epoch {epoch+1}/{num_epochs}" + "="*5)
             for phase in ['train', 'val']:
                 if phase == 'train':
                     model.train()
@@ -48,6 +52,15 @@ class ChestXRayClassifier():
 
                 running_loss += loss.item() * inputs.size(0)
                 running_correct += torch.sum(preds == labels.data).item()
+            
+            epoch_loss = running_loss / dataset_sizes[phase]
+            epoch_acc = running_correct / dataset_sizes[phase]
+            print(f"{phase.upper()}: Loss: {epoch_loss:.3f} - Accuracy: {epoch_acc:.3f}")
 
-        torch.save(model.state_dict(), self.model_path)
+            if phase == 'val' and epoch_acc > best_acc:
+                best_acc = epoch_acc
+                best_model_wts = deepcopy(model.state_dict())
+                torch.save(model.state_dict(), self.model_path)
+
+        model.load_state_dict(best_model_wts)
         return model
