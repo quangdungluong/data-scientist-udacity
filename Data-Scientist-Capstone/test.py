@@ -13,6 +13,25 @@ from src.model import ChestXRayModel
 
 
 def plot_confusion_matrix(cm, classes, normalize=False, title='Confusion Matrix', cmap=plt.cm.Blues):
+    """
+    The function `plot_confusion_matrix` plots a confusion matrix with optional normalization and saves
+    it as an image file.
+    
+    :param cm: The confusion matrix, which is a 2D array representing the counts of true positive, false
+    positive, true negative, and false negative predictions for each class
+    :param classes: The "classes" parameter is a list or array that contains the names or labels of the
+    different classes or categories in your dataset. For example, if you are working with a
+    classification problem where you have three classes (e.g., "cat", "dog", "bird"), then the "classes"
+    :param normalize: The normalize parameter is a boolean value that determines whether the confusion
+    matrix should be normalized or not. If set to True, the values in the confusion matrix will be
+    normalized to represent the proportion of correct predictions for each class. If set to False, the
+    values will represent the raw counts of correct predictions, defaults to False (optional)
+    :param title: The title of the confusion matrix plot, defaults to Confusion Matrix (optional)
+    :param cmap: The cmap parameter is used to specify the color map for the confusion matrix plot. It
+    determines the colors that will be used to represent different values in the matrix. In this case,
+    the cmap parameter is set to plt.cm.Blues, which means that shades of blue will be used to represent
+    the values
+    """
     plt.imshow(cm, interpolation='nearest', cmap=cmap)
     plt.title(title)
     plt.colorbar()
@@ -36,6 +55,12 @@ def plot_confusion_matrix(cm, classes, normalize=False, title='Confusion Matrix'
 
 
 def test_evaluation(params):
+    """
+    The function `test_evaluation` evaluates the performance of a ChestXRayModel on a test dataset and
+    prints a classification report.
+    
+    :param params: The `params` dictionary contains the following keys and their corresponding values:
+    """
     model = ChestXRayModel(num_classes=params['num_classes'])
     model.load_state_dict(torch.load(params['model_path']))
     device = 'cuda' if torch.cuda.is_available() else 'cpu'

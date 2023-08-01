@@ -21,6 +21,13 @@ model.eval()
 
 
 def process_image(image_path):
+    """
+    The function `process_image` takes an image path as input, applies a series of transformations to
+    the image, and returns the processed image.
+    
+    :param image_path: The path to the image file that you want to process
+    :return: a processed image tensor.
+    """
     data_transforms = transforms.Compose([
         transforms.Resize(256),
         transforms.CenterCrop(224),
@@ -35,12 +42,30 @@ def process_image(image_path):
     return image
 
 def predict(model, image):
+    """
+    The function "predict" takes a model and an image as input, and returns the predicted class label
+    and the probabilities of each class.
+    
+    :param model: The "model" parameter refers to a trained machine learning model that is capable of
+    making predictions on images. It could be a neural network, a deep learning model, or any other
+    model that has been trained to classify or analyze images
+    :param image: The "image" parameter is the input image that you want to make predictions on. It
+    should be in a format that is compatible with the model you are using
+    :return: two values: the prediction and the probabilities.
+    """
     output = model(image)
     probs = torch.nn.Softmax(dim=1)(output).detach().numpy()[0]
     _, prediction = output.max(1)
     return prediction, probs
 
 def allowed_file(filename):
+    """
+    The function checks if a given filename has an allowed file extension.
+    
+    :param filename: The filename parameter is a string that represents the name of a file
+    :return: a boolean value indicating whether the file extension of the given filename is in the list
+    of allowed extensions.
+    """
     """Check allow file"""
     return filename.split('.')[-1] in ALLOWED_EXTENSIONS
 

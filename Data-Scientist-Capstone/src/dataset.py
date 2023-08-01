@@ -32,6 +32,14 @@ class ChestXRayDataset:
             data_dir, x), image_transformation[x]) for x in ['train', 'val']}
 
     def setup_data(self, batch_size):
+        """
+        The function `setup_data` sets up the dataset sizes and dataloaders for training and validation.
+        
+        :param batch_size: The batch_size parameter determines the number of samples that will be
+        propagated through the neural network at each training iteration. It is used to control the
+        trade-off between training speed and model accuracy
+        :return: a tuple containing the dataset sizes and dataloaders.
+        """
         dataset_sizes = {x: len(self.image_datasets[x]) for x in ['train', 'val']}
         dataloaders = {
             x: DataLoader(self.image_datasets[x], batch_size=batch_size,

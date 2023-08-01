@@ -12,6 +12,16 @@ class ChestXRayClassifier():
             setattr(self, key, args[key])
 
     def setup_training(self):
+        """
+        The function sets up the training process by initializing the model, loss criteria, optimizer,
+        and device.
+        :return: the following objects:
+        - `model`: An instance of the `ChestXRayModel` class.
+        - `loss_criteria`: An instance of the `LabelSmoothingCrossEntropy` class.
+        - `optimizer`: An instance of the `SGD` optimizer class, initialized with the model parameters,
+        learning rate (`lr`), momentum, and weight decay.
+        - `device`:
+        """
         model = ChestXRayModel(self.num_classes)
         loss_criteria = LabelSmoothingCrossEntropy()
         optimizer = SGD(model.parameters(), lr=self.lr, momentum=self.momentum, weight_decay=self.weight_decay)
@@ -20,6 +30,7 @@ class ChestXRayClassifier():
         return model, loss_criteria, optimizer, device
 
     def train_model(self):
+        """Train model"""
         [model, loss_criteria, optimizer, device] = self.setup_training()
         best_model_wts = deepcopy(model.state_dict())
         best_acc = 0.

@@ -1,4 +1,6 @@
 # Chest XRay Classification
+## Motivation
+The primary objective of this project is to develop convolutional neural networks (CNNs) specifically tailored for a crucial classification task involving Chest X-ray images of patients. The aim is to efficiently categorize these images into five distinct types: COVID-19, Lung Opacity, Tuberculosis, Pneumonia, and Normal. By leveraging the power of deep learning and CNNs, the project seeks to enhance the accuracy and speed of diagnosis, ultimately contributing to more effective and timely medical interventions. Through this cutting-edge technology, healthcare professionals can benefit from improved decision-making and patient care, particularly in the context of respiratory-related illnesses and infections.
 
 ## Dataset
 * The Shenzhen dataset consists of 662 frontal CXR images, in which 326 images are classified as normal and 336 images are classified as manifestation of tuberculosis.
@@ -29,6 +31,29 @@ I use ResNet50 as my backbone to solve this classification problem.
 ## Metrics
 The primary measure for this issue is **accuracy**, specifically because it involves a **multiclass classification problem**.
 
+## Libraries used
+The following python libraries were used in this project. This is also included in the `requirements.txt`.
+```
+Flask==2.3.2
+matplotlib==3.7.2
+numpy==1.25.1
+orjson==3.9.2
+Pillow==10.0.0
+randaugment==1.0.2
+scikit_learn==1.3.0
+timm==0.9.2
+torch==2.0.1
+torchvision==0.15.2
+tqdm==4.65.0
+```
+
+## File Description
+**app.py**: Flask app.
+**EDA.ipynb**: Notebook containing the data analysis.
+**train.py**: Training script.
+**test.py**: test inference script.
+**config**: consists of training config.
+**src**: utils function.
 
 ## Installation
 ```
@@ -63,3 +88,7 @@ python app.py
 
 ## Improvement
 This is only a pet project and I don't spend too much time on it, so you can improve the model performance by using more data augmentation, large models (such as EfficientNet, ViT,...), and training for more epochs.
+
+## Acknowledgements
+- https://lhncbc.nlm.nih.gov/LHC-downloads/dataset.html
+- https://data.lhncbc.nlm.nih.gov/public/Tuberculosis-Chest-X-ray-Datasets/Montgomery-County-CXR-Set/MontgomerySet/index.html
